@@ -23,7 +23,7 @@ document.addEventListener('mousemove', e => {
 });
 
 // ── FLOATING EMOJIS ─────────────────────────────
-const pool = ['🐰','🐇','❤️','💕','🌸','✨','🎀','🌟','💖','🥳','🎉','💫','🫶','🎈','🌈','🍓'];
+const pool = ['🐰','🐇','🐐','❤️','💕','🌸','✨','🎀','🌟','💖','🥳','🎉','💫','🫶','🎈','🌈','🍓','🐐'];
 function spawnFloatie() {
   const el = document.createElement('div');
   el.className = 'floatie';
@@ -64,8 +64,8 @@ const reasons = [
   ['🌙','Our quiet moments together'],
   ['🗺️','You make every adventure magical'],
   ['💌','The little texts you send me'],
-  ['🎵','Your taste in music (honestly top tier)'],
-  ['🍕','That you never judge my food choices'],
+  ['🎵','Your taste in music'],
+  ['🍕','you are my favorite cheif '],
   ['🌟','How hard you work at everything'],
   ['💕','The way you say my name'],
   ['🤝','I can tell you literally anything'],
@@ -340,7 +340,7 @@ window.celebrate = function() {
     setTimeout(() => {
       const b = document.createElement('div');
       b.className = 'floatie';
-      b.textContent = ['🐰','🐇','🎉','💕','🎂','🌸','🎈','✨','🥳','🎀'][Math.floor(Math.random()*10)];
+      b.textContent = ['🐰','🐇','🐐','🎉','💕','🎂','🌸','🎈','✨','🥳','🎀','🐐'][Math.floor(Math.random()*12)];
       b.style.left = Math.random() * 100 + 'vw';
       b.style.fontSize = (Math.random() * 2.5 + 1.2) + 'rem';
       b.style.animationDuration = (Math.random() * 5 + 4) + 's';
@@ -408,3 +408,72 @@ window.addEventListener('load', () => {
     if (!rafId) rafId = requestAnimationFrame(animLoop);
   }, 800);
 });
+
+// ── LOVE LETTER ──────────────────────────────────
+let envelopeOpened = false;
+window.openEnvelope = function () {
+  if (envelopeOpened) return;
+  envelopeOpened = true;
+
+  const env    = document.getElementById('envelope');
+  const letter = document.getElementById('letter');
+
+  env.classList.add('opened');
+
+  // After flap folds back, reveal the letter
+  setTimeout(() => {
+    letter.classList.add('revealed');
+    burst(14, window.innerWidth / 2, window.innerHeight / 2);
+    if (!rafId) rafId = requestAnimationFrame(animLoop);
+  }, 550);
+};
+
+// ── GIFT BOX ─────────────────────────────────────
+const promiseList = [
+  ['🌸', 'To make you feel safe, loved, and home every single day'],
+  ['🌙', 'To hold you close on every quiet night'],
+  ['💌', 'To never stop writing you love letters, even when we\'re old'],
+  ['🫶', 'To choose you, again and again, every single day'],
+  ['🌹', 'To make you feel like the most loved person in the world'],
+  ['✨', 'To love every version of you — past, present, and forever'],
+  ['🐑', 'To get you a real goat one day 🐐'],
+];
+
+let giftOpened = false;
+window.openGift = function () {
+  if (giftOpened) return;
+  giftOpened = true;
+
+  const box      = document.getElementById('giftBox');
+  const promises = document.getElementById('promises');
+
+  box.classList.add('opened');
+
+  // Build and stagger-in the promise cards
+  setTimeout(() => {
+    promiseList.forEach(([emoji, text]) => {
+      const card = document.createElement('div');
+      card.className = 'promise-card';
+      card.innerHTML = `<span class="promise-emoji">${emoji}</span><span class="promise-text">${text}</span>`;
+      promises.appendChild(card);
+    });
+
+    promises.classList.add('revealed');
+    burst(22, window.innerWidth / 2, window.innerHeight / 2);
+    if (!rafId) rafId = requestAnimationFrame(animLoop);
+
+    // Stagger each card in
+    document.querySelectorAll('.promise-card').forEach((card, i) => {
+      setTimeout(() => card.classList.add('show'), i * 140);
+    });
+
+    // Reveal the goat GIF
+    const goat = document.getElementById('goatGifWrap');
+    if (goat) {
+      setTimeout(() => {
+        goat.classList.remove('hidden');
+        goat.classList.add('revealed');
+      }, promiseList.length * 140 + 200);
+    }
+  }, 400);
+};

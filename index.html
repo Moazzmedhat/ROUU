@@ -1,399 +1,541 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Happy Birthday My Love 🐰🎂</title>
-  <meta name="description" content="Happy 23rd birthday to the most amazing person in my world 🎉" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:ital,wght@0,400;0,700;0,900;1,700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Happy Birthday My Love 🐰🎂</title>
+    <meta
+      name="description"
+      content="Happy 23rd birthday to the most amazing person in my world 🎉"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:ital,wght@0,400;0,700;0,900;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Sparkle cursor trail -->
+    <div id="sparkle-container"></div>
 
-  <!-- Sparkle cursor trail -->
-  <div id="sparkle-container"></div>
+    <!-- Pop bunny -->
+    <div id="pop-bunny" class="pop-bunny">🐰</div>
 
-  <!-- Pop bunny -->
-  <div id="pop-bunny" class="pop-bunny">🐰</div>
+    <!-- Floating Emojis -->
+    <div id="floaties" class="floaties"></div>
 
-  <!-- Floating Emojis -->
-  <div id="floaties" class="floaties"></div>
+    <!-- Confetti canvas -->
+    <canvas id="confetti"></canvas>
 
-  <!-- Confetti canvas -->
-  <canvas id="confetti"></canvas>
+    <!-- Balloons -->
+    <div class="balloons" id="balloons" aria-hidden="true">
+      <div class="balloon" style="--c: #ff6eb4; --d: 0s; --l: 5%">🎈</div>
+      <div class="balloon" style="--c: #ffe566; --d: 0.8s; --l: 18%">🎈</div>
+      <div class="balloon" style="--c: #a8edbc; --d: 1.4s; --l: 32%">🎈</div>
+      <div class="balloon" style="--c: #d8b4fe; --d: 0.4s; --l: 55%">🎈</div>
+      <div class="balloon" style="--c: #ff9a4a; --d: 1.1s; --l: 70%">🎈</div>
+      <div class="balloon" style="--c: #ff6eb4; --d: 1.8s; --l: 85%">🎈</div>
+    </div>
 
-  <!-- Balloons -->
-  <div class="balloons" id="balloons" aria-hidden="true">
-    <div class="balloon" style="--c:#ff6eb4;--d:0s;--l:5%">🎈</div>
-    <div class="balloon" style="--c:#ffe566;--d:.8s;--l:18%">🎈</div>
-    <div class="balloon" style="--c:#a8edbc;--d:1.4s;--l:32%">🎈</div>
-    <div class="balloon" style="--c:#d8b4fe;--d:.4s;--l:55%">🎈</div>
-    <div class="balloon" style="--c:#ff9a4a;--d:1.1s;--l:70%">🎈</div>
-    <div class="balloon" style="--c:#ff6eb4;--d:1.8s;--l:85%">🎈</div>
-  </div>
-
-  <!-- =========================================
+    <!-- =========================================
        HERO
   ========================================= -->
-  <section class="hero">
-
-
-
-    <div class="hero-stars">
-      <span class="star s1">⭐</span><span class="star s2">✨</span>
-      <span class="star s3">🌟</span><span class="star s4">✨</span>
-      <span class="star s5">⭐</span><span class="star s6">🌟</span>
-      <span class="star s7">💫</span><span class="star s8">⭐</span>
-      <span class="star s9">🌸</span><span class="star s10">💕</span>
-      <span class="star s11">✨</span><span class="star s12">🎀</span>
-    </div>
-
-    <!-- CSS Bunny Left -->
-    <div class="bunny bunny-left" aria-hidden="true">
-      <div class="bunny-body">
-        <div class="bunny-ear ear-l"></div>
-        <div class="bunny-ear ear-r"></div>
-        <div class="bunny-face">
-          <div class="bunny-eye eye-l"></div>
-          <div class="bunny-eye eye-r"></div>
-          <div class="bunny-nose"></div>
-          <div class="bunny-smile"></div>
-        </div>
-        <div class="bunny-tail"></div>
+    <section class="hero">
+      <div class="hero-stars">
+        <span class="star s1">⭐</span><span class="star s2">✨</span>
+        <span class="star s3">🌟</span><span class="star s4">✨</span>
+        <span class="star s5">⭐</span><span class="star s6">🌟</span>
+        <span class="star s7">💫</span><span class="star s8">⭐</span>
+        <span class="star s9">🌸</span><span class="star s10">💕</span>
+        <span class="star s11">✨</span><span class="star s12">🎀</span>
       </div>
-    </div>
 
-    <!-- CSS Bunny Right -->
-    <div class="bunny bunny-right" aria-hidden="true">
-      <div class="bunny-body">
-        <div class="bunny-ear ear-l"></div>
-        <div class="bunny-ear ear-r"></div>
-        <div class="bunny-face">
-          <div class="bunny-eye eye-l"></div>
-          <div class="bunny-eye eye-r"></div>
-          <div class="bunny-nose"></div>
-          <div class="bunny-smile"></div>
-        </div>
-        <div class="bunny-tail"></div>
-      </div>
-    </div>
-
-    <div class="hero-inner">
-      <h1 class="hero-title">
-        Happy<br/>
-        <span class="squiggly">Birthday</span><br/>
-        <span class="name-text">Rouu 🐰</span>
-      </h1>
-
-      <!-- Typewriter subtitle -->
-      <p class="hero-sub">
-        <span id="typewriter"></span><span class="tw-cursor">|</span>
-      </p>
-
-      <a href="#age-section" class="hero-btn">
-        Let's Celebrate! &nbsp;🎉
-      </a>
-
-      <!-- Handcrafted CSS Cake -->
-      <div class="cake-scene">
-        <div class="cake-wrap">
-          <div class="cake-candles">
-            <div class="cake-candle"><div class="cake-flame"></div></div>
-            <div class="cake-candle"><div class="cake-flame"></div></div>
-            <div class="cake-candle"><div class="cake-flame"></div></div>
+      <!-- CSS Bunny Left -->
+      <div class="bunny bunny-left" aria-hidden="true">
+        <div class="bunny-body">
+          <div class="bunny-ear ear-l"></div>
+          <div class="bunny-ear ear-r"></div>
+          <div class="bunny-face">
+            <div class="bunny-eye eye-l"></div>
+            <div class="bunny-eye eye-r"></div>
+            <div class="bunny-nose"></div>
+            <div class="bunny-smile"></div>
           </div>
-          <div class="cake-top">
-            <div class="cake-icing"></div>
-            <div class="cake-drips">
-              <div class="drip"></div><div class="drip"></div><div class="drip"></div>
+          <div class="bunny-tail"></div>
+        </div>
+      </div>
+
+      <!-- CSS Bunny Right -->
+      <div class="bunny bunny-right" aria-hidden="true">
+        <div class="bunny-body">
+          <div class="bunny-ear ear-l"></div>
+          <div class="bunny-ear ear-r"></div>
+          <div class="bunny-face">
+            <div class="bunny-eye eye-l"></div>
+            <div class="bunny-eye eye-r"></div>
+            <div class="bunny-nose"></div>
+            <div class="bunny-smile"></div>
+          </div>
+          <div class="bunny-tail"></div>
+        </div>
+      </div>
+
+      <div class="hero-inner">
+        <h1 class="hero-title">
+          Happy<br />
+          <span class="squiggly">Birthday</span><br />
+          <span class="name-text">Rouu 🐰</span>
+        </h1>
+
+        <!-- Typewriter subtitle -->
+        <p class="hero-sub">
+          <span id="typewriter"></span><span class="tw-cursor">|</span>
+        </p>
+
+        <a href="#age-section" class="hero-btn"> Let's Celebrate! &nbsp;🎉 </a>
+
+        <!-- Handcrafted CSS Cake -->
+        <div class="cake-scene">
+          <div class="cake-wrap">
+            <div class="cake-candles">
+              <div class="cake-candle"><div class="cake-flame"></div></div>
+              <div class="cake-candle"><div class="cake-flame"></div></div>
+              <div class="cake-candle"><div class="cake-flame"></div></div>
             </div>
+            <div class="cake-top">
+              <div class="cake-icing"></div>
+              <div class="cake-drips">
+                <div class="drip"></div>
+                <div class="drip"></div>
+                <div class="drip"></div>
+              </div>
+            </div>
+            <div class="cake-middle"></div>
+            <div class="cake-bottom"></div>
+            <div class="cake-plate"></div>
           </div>
-          <div class="cake-middle"></div>
-          <div class="cake-bottom"></div>
-          <div class="cake-plate"></div>
         </div>
       </div>
-    </div>
 
-    <div class="grass-row">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,40 C200,0 400,80 600,40 C800,0 1000,80 1200,40 C1350,10 1400,50 1440,40 L1440,80 L0,80 Z" fill="#fff9f5"/>
-      </svg>
-    </div>
-  </section>
+      <div class="grass-row">
+        <svg
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,40 C200,0 400,80 600,40 C800,0 1000,80 1200,40 C1350,10 1400,50 1440,40 L1440,80 L0,80 Z"
+            fill="#fff9f5"
+          />
+        </svg>
+      </div>
+    </section>
 
-  <!-- =========================================
+    <!-- =========================================
        23 SECTION — BIG AGE REVEAL
   ========================================= -->
-  <section class="age-section" id="age-section">
-    <div class="age-bg-text">23</div>
+    <section class="age-section" id="age-section">
+      <div class="age-bg-text">23</div>
 
-    <div class="age-content">
-      <div class="age-label">🎉 Today you are 🎉</div>
-      <div class="age-number-wrap">
-        <div class="age-digit" id="digit2">2</div>
-        <div class="age-digit" id="digit3">3</div>
+      <div class="age-content">
+        <div class="age-label">🎉 Today you are 🎉</div>
+        <div class="age-number-wrap">
+          <div class="age-digit" id="digit2">2</div>
+          <div class="age-digit" id="digit3">3</div>
+        </div>
+        <div class="age-subtitle">
+          years of being absolutely <span>incredible</span> ✨
+        </div>
       </div>
-      <div class="age-subtitle">years of being absolutely <span>incredible</span> ✨</div>
-    </div>
 
-    <!-- 23 Candles in a row -->
-    <div class="candle-row-big" aria-label="23 candles for your 23rd birthday">
-      <!-- rendered by JS -->
-    </div>
+      <!-- 23 Candles in a row -->
+      <div
+        class="candle-row-big"
+        aria-label="23 candles for your 23rd birthday"
+      >
+        <!-- rendered by JS -->
+      </div>
 
-    <!-- Flying bunny across -->
-    <div class="sliding-bunny" aria-hidden="true">🐰💨</div>
-  </section>
+      <!-- Flying bunny across -->
+      <div class="sliding-bunny" aria-hidden="true">🐰💨</div>
+    </section>
 
-  <!-- =========================================
+    <!-- =========================================
        FUN STATS STRIP
   ========================================= -->
-  <section class="stats-strip">
-    <div class="stat-pill">
-      <span class="stat-emoji">☀️</span>
-      <span class="stat-num" id="daysStat">0</span>
-      <span class="stat-lbl">Days Together</span>
-    </div>
-    <div class="stat-pill">
-      <span class="stat-emoji">🤣</span>
-      <span class="stat-num">∞</span>
-      <span class="stat-lbl">Laughs Shared</span>
-    </div>
-    <div class="stat-pill">
-      <span class="stat-emoji">❤️</span>
-      <span class="stat-num">∞</span>
-      <span class="stat-lbl">Love For You</span>
-    </div>
-  </section>
+    <section class="stats-strip">
+      <div class="stat-pill">
+        <span class="stat-emoji">☀️</span>
+        <span class="stat-num" id="daysStat">0</span>
+        <span class="stat-lbl">Days Together</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-emoji">🤣</span>
+        <span class="stat-num">∞</span>
+        <span class="stat-lbl">Laughs Shared</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-emoji">❤️</span>
+        <span class="stat-num">∞</span>
+        <span class="stat-lbl">Love For You</span>
+      </div>
+    </section>
 
-  <!-- =========================================
+    <!-- =========================================
+       LOVE LETTER
+   ========================================= -->
+    <section class="letter-section" id="letter-section">
+      <div class="section-label">💌 A Note For You</div>
+      <h2 class="section-h2">Open your <span>letter</span> 🐰</h2>
+
+      <div class="envelope-wrap" id="envelopeWrap">
+        <div class="envelope" id="envelope" onclick="openEnvelope()">
+          <div class="env-flap" id="envFlap"></div>
+          <div class="env-body">
+            <div class="env-heart">💌</div>
+          </div>
+          <div class="env-hint">tap to open 💕</div>
+        </div>
+
+        <div class="letter" id="letter">
+          <p class="letter-date">May 15, 2026 🌸</p>
+          <p class="letter-greeting">My dearest Rouu 🐰,</p>
+          <p class="letter-body">
+            Today you turn 23, and I just want you to know that every single day
+            with you is the best day of my life. You are the most beautiful,
+            kind, and wonderful person I have ever met — and I am so lucky that
+            somehow, out of all the people in this world, you chose me. 💕
+            <br /><br />
+            Watching you grow, laugh, and shine is my favorite thing in the
+            world. I love you more than words could ever say, and I promise to
+            be by your side through every single chapter that is still to come.
+            <br /><br />
+            Happy birthday, my love. Here is to forever. 🌙
+          </p>
+          <p class="letter-sign">— Yours always, always 🐰❤️</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
        STORY / JOURNEY
-  ========================================= -->
-  <section class="story" id="story">
-    <div class="section-label">📖 Our Story</div>
-    <h2 class="section-h2">The chapters we've lived <span>together</span> 🐾</h2>
+   ========================================= -->
+    <section class="story" id="story">
+      <div class="section-label">📖 Our Story</div>
+      <h2 class="section-h2">
+        The chapters we've lived <span>together</span> 🐾
+      </h2>
 
-    <!-- Chapter 1 -->
-    <div class="chapter ch-left reveal">
-      <div class="ch-photo-wrap">
-        <img src="./r1.jpeg" alt="The day we met" class="ch-photo" loading="lazy" />
-        <div class="photo-doodle doodle-heart">♥</div>
-        <div class="photo-doodle doodle-star">★</div>
+      <!-- Chapter 1 -->
+      <div class="chapter ch-left reveal">
+        <div class="ch-photo-wrap">
+          <img
+            src="./r1.jpeg"
+            alt="The day we met"
+            class="ch-photo"
+            loading="lazy"
+          />
+          <div class="photo-doodle doodle-heart">♥</div>
+          <div class="photo-doodle doodle-star">★</div>
+        </div>
+        <div class="ch-text">
+          <div class="ch-num">01</div>
+          <h3 class="ch-title">The Day We Met ✨</h3>
+          <p class="ch-date">📅 1/10/2025</p>
+          <p class="ch-desc">
+            out of all the people in the world, somehow we found each other.
+            from the moment i saw you, i knew you were someone special. you
+            still are, every single day.
+          </p>
+          <div class="ch-sticker">
+            🐰 "i loved you from the first time i saw you"
+          </div>
+        </div>
       </div>
-      <div class="ch-text">
-        <div class="ch-num">01</div>
-        <h3 class="ch-title">The Day We Met ✨</h3>
-        <p class="ch-date">📅 1/10/2025</p>
-        <p class="ch-desc">
-          Out of nowhere, there you were. I didn't know it yet, but that was the moment 
-          everything changed. Destiny really does have the best timing, doesn't it? 🌟
-        </p>
-        <div class="ch-sticker">🐰 "Was it love at first sight?"</div>
-      </div>
-    </div>
 
-    <div class="bunny-hop-row">
-      <div class="hop-bunny">🐰</div><div class="dotted-path"></div>
-      <div class="hop-bunny delay-1">🐇</div><div class="dotted-path"></div>
-      <div class="hop-bunny delay-2">🐰</div>
-    </div>
+      <div class="bunny-hop-row">
+        <div class="hop-bunny">🐰</div>
+        <div class="dotted-path"></div>
+        <div class="hop-bunny delay-1">🐇</div>
+        <div class="dotted-path"></div>
+        <div class="hop-bunny delay-2">🐰</div>
+      </div>
 
-    <!-- Chapter 2 -->
-    <div class="chapter ch-right reveal">
-      <div class="ch-photo-wrap">
-        <img src="./r44.jpeg" alt="Our first date" class="ch-photo" loading="lazy" />
-        <div class="photo-doodle doodle-heart">♥</div>
-        <div class="photo-doodle doodle-sparkle">✦</div>
+      <!-- Chapter 2 -->
+      <div class="chapter ch-right reveal">
+        <div class="ch-photo-wrap">
+          <img
+            src="./r44.jpeg"
+            alt="Our first date"
+            class="ch-photo"
+            loading="lazy"
+          />
+          <div class="photo-doodle doodle-heart">♥</div>
+          <div class="photo-doodle doodle-sparkle">✦</div>
+        </div>
+        <div class="ch-text">
+          <div class="ch-num">02</div>
+          <h3 class="ch-title">Our First Date 🦋</h3>
+          <p class="ch-date">📅 [12/2/2026]</p>
+          <p class="ch-desc">
+            it was valentine's day and we had the most amazing night together!
+            you are the first person I've ever loved this way. 😄
+          </p>
+          <div class="ch-sticker">🌸 "Best night ever!"</div>
+        </div>
       </div>
-      <div class="ch-text">
-        <div class="ch-num">02</div>
-        <h3 class="ch-title">Our First Date 🦋</h3>
-        <p class="ch-date">📅 [12/2/2026]</p>
-        <p class="ch-desc">
-          Butterflies? Check. Wide smiles? Double check. 
-          We talked for hours and it still wasn't enough. 
-          I drove home that night grinning like an idiot. 😄
-        </p>
-        <div class="ch-sticker">🌸 "Best night ever!"</div>
-      </div>
-    </div>
 
-    <!-- Chapter 3 -->
-    <div class="chapter ch-left reveal">
-      <div class="ch-photo-wrap">
-        <img src="./r2.jpeg" alt="Our adventures - Port Said" class="ch-photo" loading="lazy" />
-        <div class="photo-doodle doodle-heart">♥</div>
-        <div class="photo-doodle doodle-map">🗺</div>
+      <!-- Chapter 3 -->
+      <div class="chapter ch-left reveal">
+        <div class="ch-photo-wrap">
+          <img
+            src="./r2.jpeg"
+            alt="Our adventures - Port Said"
+            class="ch-photo"
+            loading="lazy"
+          />
+          <div class="photo-doodle doodle-heart">♥</div>
+          <div class="photo-doodle doodle-map">🗺</div>
+        </div>
+        <div class="ch-text">
+          <div class="ch-num">03</div>
+          <h3 class="ch-title">Our Adventures 🗺️</h3>
+          <p class="ch-date">📅 Port Said 🌊</p>
+          <p class="ch-desc">
+            You're my favorite travel buddy , and every adventure with you is a
+            dream come true. can't wait for all the places we'll go together!
+          </p>
+          <div class="ch-sticker">🐰 "Next stop: dahb!"</div>
+        </div>
       </div>
-      <div class="ch-text">
-        <div class="ch-num">03</div>
-        <h3 class="ch-title">Our Adventures 🗺️</h3>
-        <p class="ch-date">📅 Port Said 🌊</p>
-        <p class="ch-desc">
-          You're my favorite travel buddy, co-pilot, and adventure partner. 
-          Every road trip, every new place — ten times better with you next to me. 🚗💨
-        </p>
-        <div class="ch-sticker">🐰 "Next stop: everywhere!"</div>
-      </div>
-    </div>
 
-    <div class="bunny-hop-row flip">
-      <div class="hop-bunny">🐇</div><div class="dotted-path"></div>
-      <div class="hop-bunny delay-1">🐰</div><div class="dotted-path"></div>
-      <div class="hop-bunny delay-2">🐇</div>
-    </div>
+      <div class="bunny-hop-row flip">
+        <div class="hop-bunny">🐇</div>
+        <div class="dotted-path"></div>
+        <div class="hop-bunny delay-1">🐰</div>
+        <div class="dotted-path"></div>
+        <div class="hop-bunny delay-2">🐇</div>
+      </div>
 
-    <!-- Chapter 4 -->
-    <div class="chapter ch-right reveal">
-      <div class="ch-photo-wrap">
-        <img src="./WhatsApp Image 2026-05-08 at 3.25.07 PM.jpeg" alt="The laughs we shared" class="ch-photo" loading="lazy" />
-        <div class="photo-doodle doodle-heart">♥</div>
-        <div class="photo-doodle doodle-ha">ha!</div>
+      <!-- Chapter 4 -->
+      <div class="chapter ch-right reveal">
+        <div class="ch-photo-wrap">
+          <img
+            src="./WhatsApp Image 2026-05-08 at 3.25.07 PM.jpeg"
+            alt="The laughs we shared"
+            class="ch-photo"
+            loading="lazy"
+          />
+          <div class="photo-doodle doodle-heart">♥</div>
+          <div class="photo-doodle doodle-ha">ha!</div>
+        </div>
+        <div class="ch-text">
+          <div class="ch-num">04</div>
+          <h3 class="ch-title">The Laughs 😂</h3>
+          <p class="ch-date">📅 [el qasm]</p>
+          <p class="ch-desc">
+            No one makes me laugh like you do. you are the funiest person i ever
+            met (ana kdab bsraha) but i love you anyway. 🤪
+          </p>
+          <div class="ch-sticker">😂 "b7b el youm da moot"</div>
+        </div>
       </div>
-      <div class="ch-text">
-        <div class="ch-num">04</div>
-        <h3 class="ch-title">The Laughs 😂</h3>
-        <p class="ch-date">📅 [el qasm]</p>
-        <p class="ch-desc">
-          No one makes me laugh like you do. Our inside jokes could fill a whole book. 
-          I love that we can be completely ridiculous together. 🤪
-        </p>
-        <div class="ch-sticker">😂 "Still laughing about that one time..."</div>
-      </div>
-    </div>
 
-    <!-- Chapter 5 -->
-    <div class="chapter ch-left reveal">
-      <div class="ch-photo-wrap">
-        <img src="./r5.jpeg" alt="Cozy quiet moments" class="ch-photo" loading="lazy" />
-        <div class="photo-doodle doodle-heart">♥</div>
-        <div class="photo-doodle doodle-moon">🌙</div>
+      <!-- Chapter 5 -->
+      <div class="chapter ch-left reveal">
+        <div class="ch-photo-wrap">
+          <img
+            src="./r5.jpeg"
+            alt="Cozy quiet moments"
+            class="ch-photo"
+            loading="lazy"
+          />
+          <div class="photo-doodle doodle-heart">♥</div>
+          <div class="photo-doodle doodle-moon">🌙</div>
+        </div>
+        <div class="ch-text">
+          <div class="ch-num">05</div>
+          <h3 class="ch-title">Cozy Moments 🌙</h3>
+          <p class="ch-date">📅 [Your coziest memory]</p>
+          <p class="ch-desc">
+            Some of my favorite moments are the simple ones. Just us, nowhere to
+            be, no rush. Home feels like anywhere you are. 🏡
+          </p>
+          <div class="ch-sticker">🐰 "Cozy > everything"</div>
+        </div>
       </div>
-      <div class="ch-text">
-        <div class="ch-num">05</div>
-        <h3 class="ch-title">Cozy Moments 🌙</h3>
-        <p class="ch-date">📅 [Your coziest memory]</p>
-        <p class="ch-desc">
-          Some of my favorite moments are the simple ones. 
-          Just us, nowhere to be, no rush. 
-          Home feels like anywhere you are. 🏡
-        </p>
-        <div class="ch-sticker">🐰 "Cozy > everything"</div>
-      </div>
-    </div>
 
-    <div class="bunny-hop-row">
-      <div class="hop-bunny">🐰</div><div class="dotted-path"></div>
-      <div class="hop-bunny delay-1">🐇</div><div class="dotted-path"></div>
-      <div class="hop-bunny delay-2">🐰</div>
-    </div>
-
-    <!-- Chapter 6 — TODAY -->
-    <div class="chapter ch-right reveal">
-      <div class="ch-photo-wrap today-wrap">
-        <img src="./r6.jpeg" alt="Today — your birthday" class="ch-photo" loading="lazy" />
-        <div class="today-ribbon">🎂 TODAY</div>
-        <div class="photo-doodle doodle-heart">♥</div>
+      <div class="bunny-hop-row">
+        <div class="hop-bunny">🐰</div>
+        <div class="dotted-path"></div>
+        <div class="hop-bunny delay-1">🐇</div>
+        <div class="dotted-path"></div>
+        <div class="hop-bunny delay-2">🐰</div>
       </div>
-      <div class="ch-text">
-        <div class="ch-num today-num">🎂</div>
-        <h3 class="ch-title">Today — Your Birthday! 🎉</h3>
-        <p class="ch-date">📅 Today, right now, this moment 🌸</p>
-        <p class="ch-desc">
-          We've come so far and I wouldn't change a single second. 
-          Here's to you — the most wonderful, beautiful, amazing person.
-          Happy birthday, my love. This is only the beginning. ❤️
-        </p>
-        <div class="ch-sticker">🐰✨ "Many more chapters to come!"</div>
-      </div>
-    </div>
-  </section>
 
-  <!-- =========================================
+      <!-- Chapter 6 — TODAY -->
+      <div class="chapter ch-right reveal">
+        <div class="ch-photo-wrap today-wrap">
+          <img
+            src="./r6.jpeg"
+            alt="Today — your birthday"
+            class="ch-photo"
+            loading="lazy"
+          />
+          <div class="today-ribbon">🎂 TODAY</div>
+          <div class="photo-doodle doodle-heart">♥</div>
+        </div>
+        <div class="ch-text">
+          <div class="ch-num today-num">🎂</div>
+          <h3 class="ch-title">Today — Your Birthday! 🎉</h3>
+          <p class="ch-date">📅 Today, right now, this moment 🌸</p>
+          <p class="ch-desc">
+            We've come so far and I wouldn't change a single second. Here's to
+            you — the most wonderful, beautiful, amazing person. Happy birthday,
+            my love. This is only the beginning. ❤️
+          </p>
+          <div class="ch-sticker">🐰✨ "Many more chapters to come!"</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
        23 REASONS I LOVE YOU
   ========================================= -->
-  <section class="reasons-section" id="reasons">
-    <div class="wavy-top">
-      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,0 L0,0 Z" fill="#fff9f5"/>
-      </svg>
-    </div>
+    <section class="reasons-section" id="reasons">
+      <div class="wavy-top">
+        <svg
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,20 1440,30 L1440,0 L0,0 Z"
+            fill="#fff9f5"
+          />
+        </svg>
+      </div>
 
-    <div class="section-label">💌 23 for 23</div>
-    <h2 class="section-h2">23 reasons I love <span>you</span> 🐰</h2>
-    <p class="reasons-hint">tap any card!</p>
+      <div class="section-label">💌 23 for 23</div>
+      <h2 class="section-h2">23 reasons I love <span>you</span> 🐰</h2>
+      <p class="reasons-hint">tap any card!</p>
 
-    <div class="reasons-grid" id="reasonsGrid">
-      <!-- Rendered by JS -->
-    </div>
+      <div class="reasons-grid" id="reasonsGrid">
+        <!-- Rendered by JS -->
+      </div>
 
-    <div class="wavy-bottom">
-      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,30 C360,0 720,60 1080,30 C1260,15 1380,40 1440,30 L1440,60 L0,60 Z" fill="#fff9f5"/>
-      </svg>
-    </div>
-  </section>
+      <div class="wavy-bottom">
+        <svg
+          viewBox="0 0 1440 60"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,30 C360,0 720,60 1080,30 C1260,15 1380,40 1440,30 L1440,60 L0,60 Z"
+            fill="#fff9f5"
+          />
+        </svg>
+      </div>
+    </section>
 
-  <!-- =========================================
+    <!-- =========================================
+       GIFT BOX / PROMISES
+   ========================================= -->
+    <section class="gift-section" id="gift-section">
+      <div class="section-label">🎁 A Gift From My Heart</div>
+      <h2 class="section-h2">My <span>promises</span> to you 💕</h2>
+
+      <div class="gift-wrap">
+        <div class="gift-box" id="giftBox" onclick="openGift()">
+          <div class="gift-lid" id="giftLid">
+            <div class="gift-ribbon-v"></div>
+            <div class="gift-ribbon-h"></div>
+            <div class="gift-bow">🎀</div>
+          </div>
+          <div class="gift-base">
+            <div class="gift-ribbon-base-v"></div>
+            <div class="gift-ribbon-base-h"></div>
+          </div>
+          <p class="gift-hint">tap to open 🎁</p>
+        </div>
+
+        <div class="promises" id="promises">
+          <!-- rendered by JS -->
+        </div>
+
+        <div class="goat-gif-wrap hidden" id="goatGifWrap">
+          <img
+            src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXcwMTZxeHR0MWtkZ3ZsemswOWZtZHdxNTYzenNma2I1OGloaHNmbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/AtlbuhSoW0pJm/giphy.gif"
+            alt="A cute goat — your future pet 🐐"
+            class="goat-gif"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================
        FINAL MESSAGE
   ========================================= -->
-  <section class="finale">
-    <!-- Party bunny crew -->
-    <div class="finale-bunnies">
-      <span class="fb fb1">🐰</span>
-      <span class="fb fb2">🎂</span>
-      <span class="fb fb3">🐇</span>
-      <span class="fb fb4">🎉</span>
-      <span class="fb fb5">🐰</span>
-      <span class="fb fb6">🥳</span>
-      <span class="fb fb7">🐇</span>
-    </div>
+    <section class="finale">
+      <!-- Party bunny crew -->
+      <div class="finale-bunnies">
+        <span class="fb fb1">🐰</span>
+        <span class="fb fb2">🎂</span>
+        <span class="fb fb3">🐇</span>
+        <span class="fb fb4">🎉</span>
+        <span class="fb fb5">🐰</span>
+        <span class="fb fb6">🥳</span>
+        <span class="fb fb7">🐇</span>
+      </div>
 
-    <h2 class="finale-title">
-      Happy 23rd Birthday<br/>
-      <span>to my favorite human</span> 🥳
-    </h2>
+      <h2 class="finale-title">
+        Happy 23rd Birthday<br />
+        <span>to my favorite human</span> 🥳
+      </h2>
 
-    <div class="finale-photo-frame">
-      <img
-        src="./r3.jpeg"
-        alt="Birthday celebration"
-        class="finale-photo"
-        loading="lazy"
-      />
-      <div class="frame-deco frame-deco-1">🌸</div>
-      <div class="frame-deco frame-deco-2">🎀</div>
-      <div class="frame-deco frame-deco-3">✨</div>
-      <div class="frame-deco frame-deco-4">🐰</div>
-      <div class="frame-deco frame-deco-5">🎂</div>
-    </div>
+      <div class="finale-photo-frame">
+        <img
+          src="./r3.jpeg"
+          alt="Birthday celebration"
+          class="finale-photo"
+          loading="lazy"
+        />
+        <div class="frame-deco frame-deco-1">🌸</div>
+        <div class="frame-deco frame-deco-2">🎀</div>
+        <div class="frame-deco frame-deco-3">✨</div>
+        <div class="frame-deco frame-deco-4">🐰</div>
+        <div class="frame-deco frame-deco-5">🎂</div>
+      </div>
 
-    <p class="finale-msg">
-      On your 23rd birthday, I want you to know that you are
-      <strong>the best thing that has ever happened to me.</strong>
-      Every single day with you is a gift. Thank you for being you — 
-      weird, wonderful, kind, and mine. 🌸<br/><br/>
-      I love you more than you know. Here's to us, forever. 💕
-    </p>
+      <p class="finale-msg">
+        On your 23rd birthday, I want you to know that you are
+        <strong>the best thing that has ever happened to me.</strong>
+        Every single day with you is a gift. Thank you for being you — weird,
+        wonderful, kind, and mine. 🌸<br /><br />
+        I love you more than you know. Here's to us, forever. 💕
+      </p>
 
-    <p class="finale-sign">— Yours always 🐰❤️</p>
+      <p class="finale-sign">— Yours always 🐰❤️</p>
 
-    <button id="celebBtn" class="big-celebrate-btn" onclick="celebrate()">
-      🎊 Tap to Celebrate! 🎊
-    </button>
+      <button id="celebBtn" class="big-celebrate-btn" onclick="celebrate()">
+        🎊 Tap to Celebrate! 🎊
+      </button>
 
-    <div id="extra-msg" class="extra-msg hidden">
-      🐰 HAPPY 23RD BIRTHDAY!! WE LOVE YOU SO MUCH!! 🐰
-    </div>
-  </section>
+      <div id="extra-msg" class="extra-msg hidden">
+        🐰 HAPPY 23RD BIRTHDAY!! WE LOVE YOU SO MUCH!! 🐰
+      </div>
+    </section>
 
-  <footer class="footer">
-    <p>Made with so much love, just for you 🐰💕 · <span id="yr"></span></p>
-  </footer>
+    <footer class="footer">
+      <p>Made with so much love, just for you 🐰💕 · <span id="yr"></span></p>
+    </footer>
 
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
