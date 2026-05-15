@@ -513,8 +513,8 @@ class FarmAnimal {
     this.element.className = `animal ${type}`;
     this.setupHTML();
     
-    this.x = Math.random() * 70 + 15; // percentage (avoid edges)
-    this.y = Math.random() * 20 + 65; // percentage (stay on green hills - bottom area)
+    this.x = Math.random() * 80 + 10; // percentage (more spread)
+    this.y = Math.random() * 25 + 65; // percentage (stay on green hills)
     this.targetX = this.x;
     this.targetY = this.y;
     
@@ -597,8 +597,8 @@ class FarmAnimal {
   startWandering() {
     const wander = () => {
       if (!feedingMode) {
-        this.targetX = Math.random() * 70 + 15;
-        this.targetY = Math.random() * 20 + 65;
+        this.targetX = Math.random() * 80 + 10;
+        this.targetY = Math.random() * 25 + 65;
         this.moveToTarget();
       }
       setTimeout(wander, Math.random() * 5000 + 3000);
