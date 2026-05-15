@@ -569,7 +569,7 @@ body * { cursor:none; }
   .farm-container {
     height: 280px;
   }
-  .animal { transform: scale(0.55); } /* Even smaller for mobile */
+  .animal { transform: scale(0.42); } /* Even smaller for mobile */
   .animal-speech { font-size: 0.75rem; min-width: 70px; }
   .treat-bucket { width: 45px; height: 45px; bottom: 10px; right: 10px; }
   .bucket-label { display: none; }
