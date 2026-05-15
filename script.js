@@ -23,7 +23,7 @@ document.addEventListener('mousemove', e => {
 });
 
 // ── FLOATING EMOJIS ─────────────────────────────
-const pool = ['🐰','🐇','🐐','❤️','💕','🌸','✨','🎀','🌟','💖','🥳','🎉','💫','🫶','🎈','🌈','🍓','🐐'];
+const pool = ['🐰','🐇','🐐','🐄','❤️','💕','🌸','✨','🎀','🌟','💖','🥳','🎉','💫','🫶','🎈','🌈','🍓','🐐','🐄'];
 function spawnFloatie() {
   const el = document.createElement('div');
   el.className = 'floatie';
@@ -340,7 +340,7 @@ window.celebrate = function() {
     setTimeout(() => {
       const b = document.createElement('div');
       b.className = 'floatie';
-      b.textContent = ['🐰','🐇','🐐','🎉','💕','🎂','🌸','🎈','✨','🥳','🎀','🐐'][Math.floor(Math.random()*12)];
+      b.textContent = ['🐰','🐇','🐐','🐄','🎉','💕','🎂','🌸','🎈','✨','🥳','🎀','🐐','🐄'][Math.floor(Math.random()*14)];
       b.style.left = Math.random() * 100 + 'vw';
       b.style.fontSize = (Math.random() * 2.5 + 1.2) + 'rem';
       b.style.animationDuration = (Math.random() * 5 + 4) + 's';
@@ -477,3 +477,237 @@ window.openGift = function () {
     }
   }, 400);
 };
+// ── HAPPY FARM LOGIC ─────────────────────────────
+let feedingMode = false;
+let farmAnimals = [];
+
+const farmQuotes = {
+  sheep: [
+    'Happy 23rd Birthday, Rouu! 🐑✨', 
+    'Ewe are the best thing ever! ❤️', 
+    'Baaa-ppy Birthday to my favorite human! 🎉', 
+    'Have a wool-y wonderful day! 🌸',
+    'Counting my blessings that you\'re 23! 🌙'
+  ],
+  cow: [
+    'Moo-ppy 23rd Birthday, Rouu! 🐄🎂', 
+    'Udderly amazing year ahead! 🥛✨', 
+    'Moo-re love for you today! ❤️', 
+    'Holy Cow, you look beautiful at 23! 🌟',
+    'Hope your day is legend-dairy! 🧀'
+  ],
+  bunny: [
+    'Some-bunny is 23 today! 🐰🎈', 
+    'Hopping with joy for your birthday! 🥕✨', 
+    'You\'re ear-resistible, Rouu! 💕', 
+    'Hoppy 23rd Birthday, my love! 🌸',
+    'Have a jump-tastic birthday! 🎀'
+  ]
+};
+
+class FarmAnimal {
+  constructor(type, container) {
+    this.type = type;
+    this.container = container;
+    this.element = document.createElement('div');
+    this.element.className = `animal ${type}`;
+    this.setupHTML();
+    
+    this.x = Math.random() * 70 + 15; // percentage (avoid edges)
+    this.y = Math.random() * 20 + 65; // percentage (stay on green hills - bottom area)
+    this.targetX = this.x;
+    this.targetY = this.y;
+    
+    this.updatePosition();
+    container.appendChild(this.element);
+    
+    this.element.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.pet();
+    });
+    
+    setTimeout(() => this.startWandering(), Math.random() * 2000);
+  }
+
+  setupHTML() {
+    let innerHTML = '';
+    if (this.type === 'sheep') {
+      innerHTML += `
+        <div class="sheep-body">
+          <div class="sheep-head">
+            <div class="party-hat"></div>
+            <div class="sheep-wool-top"></div>
+            <div class="sheep-ear e-l"></div><div class="sheep-ear e-r"></div>
+            <div class="sheep-eye"></div><div class="sheep-eye r"></div>
+          </div>
+          <div class="sheep-tail"></div>
+          <div class="sheep-leg l1"></div><div class="sheep-leg l2"></div>
+          <div class="sheep-leg l3"></div><div class="sheep-leg l4"></div>
+        </div>`;
+    } else if (this.type === 'cow') {
+      innerHTML += `
+        <div class="cow-body">
+          <div class="cow-spot s1"></div><div class="cow-spot s2"></div><div class="cow-spot s3"></div>
+          <div class="cow-head">
+            <div class="party-hat"></div>
+            <div class="cow-horn h-l"></div><div class="cow-horn h-r"></div>
+            <div class="cow-ear e-l"></div><div class="cow-ear e-r"></div>
+            <div class="cow-eye"></div><div class="cow-eye r"></div>
+            <div class="cow-nose"></div>
+          </div>
+          <div class="cow-tail"></div>
+          <div class="cow-leg l1"><div class="cow-hoof"></div></div>
+          <div class="cow-leg l2"><div class="cow-hoof"></div></div>
+          <div class="cow-leg l3"><div class="cow-hoof"></div></div>
+          <div class="cow-leg l4"><div class="cow-hoof"></div></div>
+        </div>`;
+    } else if (this.type === 'bunny-mini') {
+      innerHTML += `
+        <div class="b-body">
+          <div class="b-head">
+            <div class="party-hat"></div>
+            <div class="b-ear e-l"></div><div class="b-ear e-r"></div>
+            <div class="b-eye"></div><div class="b-eye r"></div>
+            <div class="b-blush l"></div><div class="b-blush r"></div>
+            <div class="b-nose"></div>
+            <div class="b-whiskers w-l"></div><div class="b-whiskers w-r"></div>
+          </div>
+          <div class="b-paw p-l"></div><div class="b-paw p-r"></div>
+          <div class="b-tail"></div>
+        </div>`;
+    }
+    this.element.innerHTML = innerHTML;
+  }
+
+  updatePosition() {
+    this.element.style.left = `${this.x}%`;
+    this.element.style.top = `${this.y}%`;
+    this.element.style.zIndex = Math.floor(this.y);
+    
+    // Flip based on direction
+    if (this.targetX < this.x) {
+      this.element.style.transform = 'scaleX(-1)';
+      this.element.classList.add('is-flipped');
+    } else {
+      this.element.style.transform = 'scaleX(1)';
+      this.element.classList.remove('is-flipped');
+    }
+  }
+
+  startWandering() {
+    const wander = () => {
+      if (!feedingMode) {
+        this.targetX = Math.random() * 70 + 15;
+        this.targetY = Math.random() * 20 + 65;
+        this.moveToTarget();
+      }
+      setTimeout(wander, Math.random() * 5000 + 3000);
+    };
+    wander();
+  }
+
+  moveToTarget() {
+    const dx = this.targetX - this.x;
+    const dy = this.targetY - this.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 1) return;
+
+    this.x += (dx / dist) * 0.5;
+    this.y += (dy / dist) * 0.5;
+    
+    this.updatePosition();
+    
+    if (dist > 1) {
+      requestAnimationFrame(() => this.moveToTarget());
+    }
+  }
+
+  pet() {
+    this.element.classList.add('hop');
+    setTimeout(() => this.element.classList.remove('hop'), 500);
+    
+    // Show speech bubble
+    const typeKey = this.type === 'bunny-mini' ? 'bunny' : this.type;
+    const quotes = farmQuotes[typeKey];
+    const msg = quotes[Math.floor(Math.random() * quotes.length)];
+    
+    const bubble = document.createElement('div');
+    bubble.className = 'animal-speech';
+    bubble.textContent = msg;
+    this.element.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 2500);
+    
+    burst(10, this.element.getBoundingClientRect().left, this.element.getBoundingClientRect().top);
+  }
+
+  goToFood(fx, fy) {
+    this.targetX = fx;
+    this.targetY = fy;
+    this.moveToTarget();
+  }
+}
+
+function initFarm() {
+  const pen = document.getElementById('animalPen');
+  if (!pen) return;
+  
+  // Create initial animals (fewer on mobile)
+  const isMobile = window.innerWidth <= 480;
+  const counts = isMobile 
+    ? { sheep: 2, cow: 2, bunny: 2 } 
+    : { sheep: 3, cow: 2, bunny: 4 };
+
+  for (let i = 0; i < counts.sheep; i++) farmAnimals.push(new FarmAnimal('sheep', pen));
+  for (let i = 0; i < counts.cow; i++) farmAnimals.push(new FarmAnimal('cow', pen));
+  for (let i = 0; i < counts.bunny; i++) farmAnimals.push(new FarmAnimal('bunny-mini', pen));
+  
+  // Handle feeding mode clicks
+  const container = document.getElementById('farmContainer');
+  container.addEventListener('click', (e) => {
+    if (!feedingMode) return;
+    
+    const rect = container.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    
+    dropFood(x, y);
+  });
+}
+
+function toggleFeedingMode() {
+  feedingMode = !feedingMode;
+  const bucket = document.getElementById('treatBucket');
+  if (feedingMode) {
+    bucket.classList.add('active');
+    document.body.style.cursor = 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\'><text y=\'24\' font-size=\'24\'>🥕</text></svg>"), auto';
+  } else {
+    bucket.classList.remove('active');
+    document.body.style.cursor = 'none'; // Back to custom cursor
+  }
+}
+
+function dropFood(x, y) {
+  const food = document.createElement('div');
+  food.className = 'food-item';
+  food.textContent = Math.random() > 0.5 ? '🥕' : '🌿';
+  food.style.left = `${x}%`;
+  food.style.top = `${y}%`;
+  document.getElementById('feedOverlay').appendChild(food);
+  
+  // All animals move towards food
+  farmAnimals.forEach(a => {
+    // Add some randomness to their target so they don't overlap perfectly
+    const offset = (Math.random() - 0.5) * 10;
+    a.goToFood(x + offset, y + offset);
+  });
+  
+  setTimeout(() => {
+    food.style.opacity = '0';
+    setTimeout(() => food.remove(), 500);
+  }, 3000);
+}
+
+// Initialize farm on load
+window.addEventListener('load', () => {
+  setTimeout(initFarm, 2000);
+});

@@ -258,6 +258,499 @@ body * { cursor:none; }
 @keyframes hopBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 .dotted-path { flex:1; height:3px; border-top:3px dotted #ffc0dc; max-width:60px; }
 
+/* ===== HAPPY FARM SECTION ===== */
+.farm-section {
+  padding: 4rem 1.5rem 5rem;
+  background: linear-gradient(180deg, #cff4fc 0%, #e0f7fa 40%, #fff9f5 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.farm-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 450px;
+  margin: 2rem auto;
+  background: #cff4fc;
+  border-radius: 30px;
+  border: 6px solid #fff;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.farm-sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  pointer-events: none;
+}
+
+.farm-cloud {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.6;
+  animation: floatClouds 20s linear infinite;
+}
+.c1 { top: 20px; animation-duration: 25s; }
+.c2 { top: 60px; animation-duration: 35s; animation-delay: -5s; }
+
+@keyframes floatClouds {
+  from { left: -100px; }
+  to { left: 100%; }
+}
+
+.farm-sun {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 3.5rem;
+  animation: sunGlow 4s ease-in-out infinite;
+}
+@keyframes sunGlow {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px #ffe566); }
+  50% { transform: scale(1.1); filter: drop-shadow(0 0 25px #ffe566); }
+}
+
+.farm-hills {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  pointer-events: none;
+}
+
+.hill {
+  position: absolute;
+  bottom: -50px;
+  border-radius: 50%;
+}
+.h1 { width: 120%; height: 200px; left: -10%; background: #a8edbc; z-index: 1; bottom: -80px; opacity: 0.8; }
+.h2 { width: 130%; height: 220px; left: -15%; background: #96e0ab; z-index: 2; bottom: -100px; }
+.h3 { width: 110%; height: 180px; left: 0%; background: #82d699; z-index: 3; bottom: -70px; }
+
+.animal-pen {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through to hills */
+}
+
+.feed-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none;
+}
+
+/* Treat Bucket UI */
+.farm-controls {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.treat-bucket {
+  position: relative;
+  width: 100px;
+  height: 80px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.treat-bucket:hover { transform: scale(1.1) rotate(-5deg); }
+.treat-bucket.active { transform: scale(1.15); }
+.treat-bucket.active::after {
+  content: 'FEEDING MODE';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: #ff6eb4;
+  white-space: nowrap;
+  background: #fff;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 2px solid #ff6eb4;
+  animation: blink 0.7s infinite;
+}
+
+.bucket-body {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(135deg, #ffb347, #ff9a4a);
+  border-radius: 0 0 20px 20px;
+  border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.bucket-handle {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 40px;
+  border: 4px solid #fff;
+  border-radius: 50% 50% 0 0;
+  border-bottom: none;
+}
+
+.bucket-label {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 900;
+  font-size: 0.8rem;
+  color: var(--med);
+  white-space: nowrap;
+}
+
+.farm-hint {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--med);
+  margin-top: 1.5rem;
+}
+
+/* Animal Styles */
+.animal {
+  position: absolute;
+  transition: transform 0.3s, left 1s linear, top 1s linear;
+  user-select: none;
+  cursor: pointer;
+  pointer-events: auto; /* Re-enable clicks for the animals */
+}
+
+.animal:hover { filter: brightness(1.1); }
+
+.animal-speech {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--hot);
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 100;
+  pointer-events: none;
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animal.is-flipped .animal-speech {
+  transform: translateX(-50%) scaleX(-1); /* Flip the text back so it's readable */
+}
+
+.animal-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #fff;
+}
+
+/* Sheep CSS - Ultra Fluffy */
+.sheep { width: 80px; height: 65px; }
+.sheep-body {
+  width: 58px;
+  height: 44px;
+  background: #fff;
+  border-radius: 50px;
+  position: relative;
+  /* Multi-layered wool puffs */
+  box-shadow: 
+    0 4px 15px rgba(0,0,0,0.05),
+    -12px -8px 0 -2px #fff,
+    12px -8px 0 -2px #fff,
+    -18px 8px 0 -2px #fff,
+    18px 8px 0 -2px #fff,
+    0 12px 0 -2px #fff,
+    0 -12px 0 -4px #fff,
+    -15px -2px 0 -2px #fff,
+    15px -2px 0 -2px #fff;
+}
+
+.sheep-head {
+  width: 26px;
+  height: 26px;
+  background: #333;
+  border-radius: 50% 50% 40% 40%;
+  position: absolute;
+  left: -14px;
+  top: 6px;
+  z-index: 10;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.sheep-wool-top {
+  position: absolute;
+  top: -6px;
+  left: 3px;
+  width: 20px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: -4px 0 0 -2px #fff, 4px 0 0 -2px #fff;
+}
+
+.sheep-ear {
+  position: absolute;
+  width: 10px;
+  height: 14px;
+  background: #333;
+  border-radius: 50% 50% 20% 20%;
+  top: 4px;
+}
+.sheep-ear.e-l { left: -6px; transform: rotate(-30deg); }
+.sheep-ear.e-r { right: -6px; transform: rotate(30deg); }
+
+.sheep-eye { width: 4px; height: 4px; background: #fff; border-radius: 50%; position: absolute; top: 9px; left: 6px; }
+.sheep-eye.r { left: 16px; }
+
+.sheep-tail {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  right: -10px;
+  top: 15px;
+  box-shadow: -2px 2px 0 -2px #eee;
+  animation: tailWiggle 1.5s ease-in-out infinite;
+}
+@keyframes tailWiggle { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(20deg) translateX(2px); } }
+
+.sheep-leg { width: 5px; height: 14px; background: #333; position: absolute; bottom: -10px; border-radius: 3px; }
+.sheep .l1 { left: 15px; } .sheep .l2 { left: 25px; } .sheep .l3 { left: 35px; } .sheep .l4 { left: 45px; }
+
+/* Cow CSS - Kawaii & Chonky Redesign */
+.cow { width: 110px; height: 90px; }
+.cow-body {
+  width: 85px;
+  height: 60px;
+  background: #fff;
+  border-radius: 35px 35px 25px 25px; /* More rounded "chonky" body */
+  position: relative;
+  border: 3px solid #fce4ec;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+}
+
+/* Mobile Responsiveness for Farm */
+@media (max-width: 768px) {
+  .farm-container {
+    height: 350px;
+  }
+  .animal { transform: scale(0.8); }
+  .is-flipped .animal-speech { transform: translateX(-50%) scaleX(-1) scale(1.2); }
+}
+
+@media (max-width: 480px) {
+  .farm-container {
+    height: 280px;
+  }
+  .animal { transform: scale(0.55); } /* Even smaller for mobile */
+  .animal-speech { font-size: 0.75rem; min-width: 70px; }
+  .treat-bucket { width: 45px; height: 45px; bottom: 10px; right: 10px; }
+  .bucket-label { display: none; }
+}
+
+.cow-spot { position: absolute; background: #333; opacity: 0.9; }
+.s1 { width: 40px; height: 32px; top: 0; left: 10px; border-radius: 20% 80% 40% 60%; } /* Large shoulder spot */
+.s2 { width: 25px; height: 25px; bottom: 8px; right: 5px; border-radius: 60% 40% 70% 30%; } /* Rump spot */
+.s3 { width: 18px; height: 14px; top: 22px; right: 18px; border-radius: 40% 60% 50% 50%; } /* Middle side spot */
+
+.cow-head {
+  width: 42px;
+  height: 44px;
+  background: #fff;
+  border: 3px solid #fce4ec;
+  border-radius: 18px 18px 12px 12px;
+  position: absolute;
+  left: -24px;
+  top: -12px;
+  z-index: 10;
+  box-shadow: -4px 4px 10px rgba(0,0,0,0.03);
+}
+.cow-ear {
+  position: absolute;
+  width: 16px;
+  height: 10px;
+  background: #fff;
+  border: 2px solid #fce4ec;
+  border-radius: 50% 50% 10% 10%;
+  top: 10px;
+}
+.cow-ear.e-l { left: -10px; transform: rotate(-35deg); border-radius: 70% 30% 30% 70%; }
+.cow-ear.e-r { right: -10px; transform: rotate(35deg); border-radius: 30% 70% 70% 30%; }
+
+.cow-nose { 
+  width: 110%; 
+  height: 24px; 
+  background: #ffc1e3; 
+  position: absolute; 
+  bottom: -4px; 
+  left: -5%;
+  border-radius: 12px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border: 2px solid #fff;
+}
+.cow-nose::before, .cow-nose::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 50%;
+}
+.cow-eye { width: 6px; height: 6px; background: #333; border-radius: 50%; position: absolute; top: 14px; left: 10px; }
+.cow-eye.r { right: 10px; left: auto; }
+.cow-horn { width: 8px; height: 12px; background: #e0e0e0; position: absolute; top: -10px; border-radius: 4px 4px 2px 2px; }
+.h-l { left: 8px; transform: rotate(-20deg); }
+.h-r { right: 8px; transform: rotate(20deg); }
+
+.cow-tail {
+  position: absolute;
+  width: 25px;
+  height: 5px;
+  background: #fce4ec;
+  right: -18px;
+  top: 20px;
+  transform-origin: left center;
+  animation: tailWag 1.8s ease-in-out infinite;
+  border-radius: 3px;
+}
+.cow-tail::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  width: 12px;
+  height: 14px;
+  background: #333;
+  border-radius: 50% 30% 50% 30%;
+}
+
+.cow-leg { width: 10px; height: 20px; background: #fff; border: 2.5px solid #fce4ec; position: absolute; bottom: -15px; border-radius: 4px; }
+.cow-hoof { position: absolute; bottom: 0; width: 100%; height: 6px; background: #333; border-radius: 0 0 3px 3px; }
+.cow .l1 { left: 15px; } .cow .l2 { left: 32px; } .cow .l3 { left: 55px; } .cow .l4 { left: 72px; }
+
+/* Bunny CSS (Mini) - Fuzzy & Expressive */
+.bunny-mini { width: 50px; height: 50px; }
+.b-body { 
+  width: 36px; 
+  height: 30px; 
+  background: #fff; 
+  border-radius: 50% 50% 35% 35%; /* Teardrop loaf shape */
+  border: 2px solid #ffd6ec; 
+  position: relative; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03), inset 0 -4px 6px rgba(255, 214, 236, 0.3);
+}
+.b-head {
+  width: 32px;
+  height: 30px;
+  background: #fff;
+  border: 2px solid #ffd6ec;
+  border-radius: 50%;
+  position: absolute;
+  top: -20px;
+  left: 2px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+}
+.b-ear { width: 9px; height: 24px; background: #fff; border: 2px solid #ffd6ec; border-radius: 10px; position: absolute; top: -20px; }
+.e-l { left: 2px; transform: rotate(-15deg); }
+.e-r { right: 2px; transform: rotate(15deg); border-radius: 10px 10px 5px 5px; height: 18px; top: -14px; } /* Bent ear effect */
+
+.b-eye { width: 4.5px; height: 4.5px; background: #333; border-radius: 50%; position: absolute; top: 11px; left: 7px; }
+.b-eye.r { right: 7px; left: auto; }
+.b-blush { width: 6px; height: 3px; background: rgba(255, 183, 213, 0.5); border-radius: 50%; position: absolute; top: 18px; }
+.b-blush.l { left: 4px; }
+.b-blush.r { right: 4px; }
+
+.b-nose { width: 6px; height: 4px; background: #ffb7d5; border-radius: 50%; position: absolute; top: 15px; left: 50%; transform: translateX(-50%); z-index: 5; }
+.b-whiskers { position: absolute; top: 14px; width: 14px; height: 8px; z-index: 4; }
+.w-l { left: -6px; }
+.w-r { right: -6px; transform: scaleX(-1); }
+.b-whiskers::before, .b-whiskers::after { content: ''; position: absolute; background: rgba(0,0,0,0.12); height: 1px; width: 100%; border-radius: 1px; }
+.b-whiskers::before { top: 0; transform: rotate(10deg); }
+.b-whiskers::after { bottom: 0; transform: rotate(-10deg); }
+
+.b-paw { position: absolute; width: 10px; height: 6px; background: #fff; border: 1.5px solid #ffd6ec; border-radius: 50%; bottom: -3px; }
+.p-l { left: 4px; }
+.p-r { right: 4px; }
+.b-tail { position: absolute; width: 10px; height: 10px; background: #fff; border: 1.5px solid #ffd6ec; border-radius: 50%; right: -4px; bottom: 6px; }
+
+/* Party Hat - Fixed Position on Heads */
+.party-hat {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 14px solid var(--pink);
+  z-index: 15;
+}
+
+/* Specific Head Offsets */
+.sheep-head .party-hat { top: -12px; }
+.cow-head .party-hat { top: -14px; left: 50%; }
+.b-head .party-hat { top: -15px; left: 50%; }
+
+.party-hat::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -2px;
+  width: 4px;
+  height: 4px;
+  background: var(--yellow);
+  border-radius: 50%;
+}
+
+/* Animations */
+.hop { animation: animalHop 0.5s ease-out; }
+@keyframes animalHop {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -30px; }
+}
+
+.food-item {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: dropFood 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  pointer-events: none;
+  z-index: 15;
+}
+@keyframes dropFood {
+  from { transform: translateY(-50px) scale(0); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
 /* ===== 23 REASONS ===== */
 .reasons-section { background:linear-gradient(160deg,#ffe0f0,#fff0d6,#d4f1f4); padding:0 1.2rem; text-align:center; }
 .wavy-top,.wavy-bottom { line-height:0; }
