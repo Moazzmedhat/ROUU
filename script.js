@@ -483,25 +483,25 @@ let farmAnimals = [];
 
 const farmQuotes = {
   sheep: [
-    'Happy 23rd Birthday, Rouu! 🐑✨', 
-    'Ewe are the best thing ever! ❤️', 
-    'Baaa-ppy Birthday to my favorite human! 🎉', 
-    'Have a wool-y wonderful day! 🌸',
-    'Counting my blessings that you\'re 23! 🌙'
+    'Happy 23rd Birthday, Rouu! ❤️', 
+    'You make every day brighter! ✨', 
+    'Wishing you the most beautiful year ahead!', 
+    'You deserve all the happiness in the world! 🌸',
+    'So grateful to celebrate this special day with you!'
   ],
   cow: [
-    'Moo-ppy 23rd Birthday, Rouu! 🐄🎂', 
-    'Udderly amazing year ahead! 🥛✨', 
-    'Moo-re love for you today! ❤️', 
-    'Holy Cow, you look beautiful at 23! 🌟',
-    'Hope your day is legend-dairy! 🧀'
+    'Happy Birthday to the most amazing person! 🎂', 
+    'Hope your 23rd year is filled with love and joy!', 
+    'You are truly one of a kind, Rouu! 🌟', 
+    'May all your birthday dreams come true! ❤️',
+    'Sending you so much love on your big day!'
   ],
   bunny: [
-    'Some-bunny is 23 today! 🐰🎈', 
-    'Hopping with joy for your birthday! 🥕✨', 
-    'You\'re ear-resistible, Rouu! 💕', 
-    'Hoppy 23rd Birthday, my love! 🌸',
-    'Have a jump-tastic birthday! 🎀'
+    'Happy Birthday, my beautiful Rouu! 🎈', 
+    'To many more years of laughter and love! ✨', 
+    'You are such a blessing in my life! 💕', 
+    'Cheers to 23 years of being wonderful! 🌸',
+    'Enjoy every single moment of your day! 🎀'
   ]
 };
 
